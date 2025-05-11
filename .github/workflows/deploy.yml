@@ -11,10 +11,10 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Docker for Minikube on Windows
-      shell: powershell
+      shell: pwsh
       run: |
-        & minikube -p minikube docker-env --shell powershell | Invoke-Expression
-        docker system prune -a -f
+        $envVars = & minikube -p minikube docker-env --shell powershell
+        Invoke-Expression $envVars
 
     - name: Build Frontend Image
       run: docker build -t umer515k/frontend:latest ./app/frontend
