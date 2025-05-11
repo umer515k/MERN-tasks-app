@@ -20,6 +20,6 @@ spec:
         - containerPort: 5000
         env:
         - name: MONGODB_URL
-          value: "mongodb://root:example@mongodb-service:27017/task-manager"
+          value: "mongodb://root:example@mongodb-service:27017/task-manager?authSource=admin"
         - name: ACCESS_TOKEN_SECRET
           value: "Rj2S?RVe9[]8-dCS6A**&b5Tsg$gwbg~Bd{*QTK"
