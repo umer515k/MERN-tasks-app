@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: <your-dockerhub-username>/frontend:latest
+        image: umer515k/frontend:latest
         ports:
         - containerPort: 80
         # Environment variables for React (optional)
