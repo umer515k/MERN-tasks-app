@@ -15,7 +15,7 @@ jobs:
       run: |
         $envVars = & minikube -p minikube docker-env --shell powershell
         $envText = $envVars -join "`n"
-        Invoke-Expression $envVars
+        Invoke-Expression $envText
 
     - name: Build Frontend Image
       run: docker build -t umer515k/frontend:latest ./app/frontend
