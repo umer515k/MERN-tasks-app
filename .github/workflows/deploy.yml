@@ -31,6 +31,10 @@ jobs:
         docker push umer515k/frontend:latest
         docker push umer515k/backend:latest
 
+    - name: Create Namespace if not exists
+      run: |
+        kubectl get namespace mern-app || kubectl create namespace mern-app
+        
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f k8s/mongodb/ -n mern-app
