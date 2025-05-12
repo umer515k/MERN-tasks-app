@@ -21,15 +21,21 @@ RUN npm run build
 # Stage 2: Serve with NGINX
 FROM nginx:alpine
 
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/nginx.conf
-
 # Remove default static files
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy built files
+# Copy the custom nginx config file (make sure it's placed correctly in your project)
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copy built files from build stage to nginx's html directory
 COPY --from=build /app/build /usr/share/nginx/html
 
+# Optional: Rename files for better caching strategy (if needed)
+RUN find /usr/share/nginx/html/static/css -type f -name "*.css" -exec mv {} /usr/share/nginx/html/static/css/main.css \;
+RUN find /usr/share/nginx/html/static/js -type f -name "*.js" -exec mv {} /usr/share/nginx/html/static/js/main.js \;
+
+# Expose port 80
 EXPOSE 80
 
+# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
