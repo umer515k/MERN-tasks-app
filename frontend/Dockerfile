@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy package files first for better caching
 COPY package*.json ./
 COPY tailwind.config.js ./
-COPY postcss.config.js ./  # Include if you have this file
+COPY postcss.config.js ./
 
 # Install dependencies (including devDependencies)
 RUN npm install --legacy-peer-deps
